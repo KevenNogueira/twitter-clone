@@ -71,4 +71,32 @@ class Usuario extends Model
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function validaLogin()
+    {
+        $query = "
+            SELECT
+                id,
+                nome,
+                email
+            FROM
+                usuarios
+            WHERE
+                email = ?
+            AND
+                senha = ?
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(1, $this->__get('email'));
+        $stmt->bindValue(2, $this->__get('senha'));
+        $stmt->execute();
+
+        $usuario = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if (!empty($usuario['id']) && !empty($usuario['nome'])) {
+            $this->__set('id', $usuario['id']);
+            $this->__set('nome', $usuario['nome']);
+        }
+    }
 }
