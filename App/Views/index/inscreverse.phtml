@@ -16,9 +16,10 @@
                 <div class="row">
                     <div class="col">
 
-                        <form action="" method="post">
+                        <form action="/registrar" method="post">
                             <div class="form-group">
-                                <input type="text" name="user" id="user" class="form-control" placeholder="Usuário">
+                                <input type="text" name="usuario" id="usuario" class="form-control"
+                                    placeholder="Usuário">
                             </div>
 
                             <div class="form-group">
@@ -26,7 +27,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="password" name="pass" id="pass" class="form-control" placeholder="Senha">
+                                <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha">
                             </div>
 
                             <div class="mt-4 mb-4">
@@ -38,6 +39,19 @@
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Inscrever-se</button>
                             <a href="/" class="btn btn-outline-primary btn-block mb-2">Voltar</a>
+
+                            <?php if ($this->view->erroCadastro) { ?>
+                            <small class="form-text text-danger">
+                                *Erro ao tentar realizar o cadastro, verifique se os campos foram preenchidos
+                                corretamente*
+                            </small>
+                            <?php } ?>
+
+                            <?php if ($this->view->usuarioExistente) { ?>
+                            <small class="form-text text-danger">
+                                *Erro ao tentar realizar o cadastro! Email já possui cadastro inserido na plataforma.*
+                            </small>
+                            <?php } ?>
 
                         </form>
 
