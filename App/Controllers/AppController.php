@@ -18,4 +18,22 @@ class AppController extends Action
             header('Location: /?login=erro');
         }
     }
+
+    public function tweet()
+    {
+        session_start();
+        if (!empty($_SESSION['id']) && !empty($_SESSION['nome'])) {
+
+            $tweer = Container::getModel('Tweet');
+            $tweer->__set('tweet', $_POST['tweet']);
+            $tweer->__set('id_usuario', $_SESSION['id']);
+            $tweer->salvar();
+
+            echo '<pre>';
+            print_r($tweer);
+            echo '</pre>';
+        } else {
+            header('Location: /?login=erro');
+        }
+    }
 }
