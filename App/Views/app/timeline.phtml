@@ -61,35 +61,32 @@
                     </form>
                 </div>
             </div>
+            <?php foreach ($this->view->tweets as $id_tweet => $tweet) { ?>
+                <div class="row tweer">
+                    <div class="col">
+                        <p>
+                            <strong>
+                                <?php echo $tweet['nome'] ?>
+                            </strong>
 
-            <div class="row tweer">
-                <div class="col">
-                    <p><strong>Nome do Usuário</strong> <small class="text text-muted">-Data tweet-</small></p>
-                    <p>Conteúdo do trem</p>
-                    <br>
+                            <small class="text text-muted">
+                                <?php echo $tweet['data'] ?>
+                            </small>
+                        </p>
 
-                    <form action="">
-                        <div class="col d-flex justify-content-end">
-                            <button type="submit" class="btn btn-outline-danger"><small>Remover</small></button>
-                        </div>
-                    </form>
+                        <p>
+                            <?php echo $tweet['tweet'] ?>
+                        </p>
+                        <br>
+
+                        <form action="">
+                            <div class="col d-flex justify-content-end">
+                                <button type="submit" class="btn btn-outline-danger"><small>Remover</small></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-
-            <div class="row tweer">
-                <div class="col">
-                    <p><strong>Nome do Usuário</strong> <small class="text text-muted">-Data tweet-</small></p>
-                    <p>Conteúdo do trem</p>
-                    <br>
-
-                    <form action="">
-                        <div class="col d-flex justify-content-end">
-                            <button type="submit" class="btn btn-outline-danger"><small>Remover</small></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
+            <?php } ?>
         </div>
 
         <div class="col-md-3">

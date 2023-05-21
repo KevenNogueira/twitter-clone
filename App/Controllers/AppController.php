@@ -9,30 +9,32 @@ class AppController extends Action
 {
     public function timeline()
     {
-        session_start();
+        $this->validaAutenticacao();
 
-        if (!empty($_SESSION['id']) && !empty($_SESSION['nome'])) {
+        $tweet = Container::getModel('Tweet');
+        $tweet->__set('id_usuario', $_SESSION['id']);
 
-            $this->render('timeline');
-        } else {
-            header('Location: /?login=erro');
-        }
+        $this->view->tweets = $tweet->getAll();
+
+        $this->render('timeline');
     }
 
     public function tweet()
     {
+        $this->validaAutenticacao();
+
+        $tweet = Container::getModel('Tweet');
+        $tweet->__set('tweet', $_POST['tweet']);
+        $tweet->__set('id_usuario', $_SESSION['id']);
+        $tweet->salvar();
+
+        header('Location: /timeline');
+    }
+
+    public function validaAutenticacao()
+    {
         session_start();
-        if (!empty($_SESSION['id']) && !empty($_SESSION['nome'])) {
-
-            $tweer = Container::getModel('Tweet');
-            $tweer->__set('tweet', $_POST['tweet']);
-            $tweer->__set('id_usuario', $_SESSION['id']);
-            $tweer->salvar();
-
-            echo '<pre>';
-            print_r($tweer);
-            echo '</pre>';
-        } else {
+        if (!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
             header('Location: /?login=erro');
         }
     }
