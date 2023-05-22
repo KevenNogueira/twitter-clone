@@ -57,17 +57,38 @@ class Tweet extends Model
             ON 
                 (t.id_usuario = u.id)
             WHERE
-                t.id_usuario = ?
+                t.id_usuario = :id_usuario
+            OR 
+                t.id_usuario IN (                                        
+                    SELECT 
+	                    id_usuario_seguindo 
+                    FROM
+	                    usuarios_seguidores us 
+                    WHERE 
+	                    id_usuario = :id_usuario
+                )                
             ORDER BY
                 data DESC
-            
-            
         ";
 
         $stmt = $this->db->prepare($query);
-        $stmt->bindValue(1, $this->__get('id_usuario'));
+        $stmt->bindValue(':id_usuario', $this->__get('id_usuario'));
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function delete()
+    {
+        $query = "
+            DELETE FROM
+                tweets
+            WHERE
+                id = ?
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(1, $this->__get('id'));
+        $stmt->execute();
     }
 }
