@@ -7,6 +7,14 @@ use MF\Model\Container;
 
 class AppController extends Action
 {
+    public function validaAutenticacao()
+    {
+        session_start();
+        if (!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
+            header('Location: /?login=erro');
+        }
+    }
+
     public function timeline()
     {
         $this->validaAutenticacao();
@@ -31,11 +39,22 @@ class AppController extends Action
         header('Location: /timeline');
     }
 
-    public function validaAutenticacao()
+
+    public function quemSeguir()
     {
-        session_start();
-        if (!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
-            header('Location: /?login=erro');
+        $this->validaAutenticacao();
+
+        $pesquisaPor = isset($_GET['pesquisarPor']) ? $_GET['pesquisarPor'] : '';
+
+        $usuarios = array();
+
+        if (!empty($pesquisaPor)) {
+            $usuario = Container::getModel('Usuario');
+            $usuario->__set('nome', $pesquisaPor);
+            $usuarios = $usuario->getAll();
         }
+
+        $this->view->usuarios = $usuarios;
+        $this->render('quemSeguir');
     }
 }
