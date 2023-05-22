@@ -81,13 +81,22 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col-md-6">
-										<?php echo $usuario['nome'] ?>
+										<?php echo $usuario['nome'] . '<br>' ?>
 									</div>
 
 									<div class="col-md-6 d-flex justify-content-end">
 										<div>
-											<a href="#" class="btn btn-success">Seguir</a>
-											<a href="#" class="btn btn-danger">Deixar de seguir</a>
+											<?php if ($usuario['bool_seguindo'] == 0) { ?>
+												<a href="/acao?acao=seguir&id_usuario=<?php echo $usuario['id'] ?>" class="btn btn-success">
+													Seguir
+												</a>
+											<?php } ?>
+
+											<?php if ($usuario['bool_seguindo'] == 1) { ?>
+												<a href="/acao?acao=deixar_de_seguir&id_usuario=<?php echo $usuario['id'] ?>" class="btn btn-danger">
+													Deixar de seguir
+												</a>
+											<?php } ?>
 										</div>
 									</div>
 								</div>
