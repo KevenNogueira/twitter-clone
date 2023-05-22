@@ -22,7 +22,9 @@
 
                     <div class="row mt-2 mb-2">
                         <div class="col mb-2">
-                            <span class="perfilPainelNome">Nome do Usuário</span>
+                            <span class="perfilPainelNome">
+                                <?php echo $this->view->nomeUsuario['nome'] ?>
+                            </span>
                         </div>
                     </div>
 
@@ -30,17 +32,23 @@
 
                         <div class="col">
                             <span class="perfilPainelItem">Tweets</span><br>
-                            <span class="perfilPainelItemValor">0</span>
+                            <span class="perfilPainelItemValor">
+                                <?php echo $this->view->totalTweet['total_tweet'] ?>
+                            </span>
                         </div>
 
                         <div class="col">
                             <span class="perfilPainelItem">Seguindo</span><br>
-                            <span class="perfilPainelItemValor">0</span>
+                            <span class="perfilPainelItemValor">
+                                <?php echo $this->view->totalSeguindo['total_seguindo'] ?>
+                            </span>
                         </div>
 
                         <div class="col">
                             <span class="perfilPainelItem">Seguidores</span><br>
-                            <span class="perfilPainelItemValor">0</span>
+                            <span class="perfilPainelItemValor">
+                                <?php echo $this->view->totalSeguidores['total_seguidores'] ?>
+                            </span>
                         </div>
 
                     </div>
@@ -62,7 +70,7 @@
                 </div>
             </div>
             <?php foreach ($this->view->tweets as $id_tweet => $tweet) { ?>
-                <div class="row tweer">
+                <div class="row tweet">
                     <div class="col">
                         <p>
                             <strong>
@@ -79,11 +87,17 @@
                         </p>
                         <br>
 
-                        <form action="">
-                            <div class="col d-flex justify-content-end">
-                                <button type="submit" class="btn btn-outline-danger"><small>Remover</small></button>
-                            </div>
-                        </form>
+                        <?php if ($tweet['id_usuario'] == $_SESSION['id']) { ?>
+
+                            <form action="/remove_tweet" method="post">
+                                <div class="col d-flex justify-content-end">
+                                    <input type="hidden" name="tweet" value="<?php echo $tweet['id'] ?>">
+                                    <button type="submit" class="btn btn-outline-danger"><small>Remover</small></button>
+                                </div>
+                            </form>
+
+                        <?php } ?>
+
                     </div>
                 </div>
             <?php } ?>
@@ -94,7 +108,7 @@
                 <span class="quemSeguirTitulo">Quem Seguir</span>
                 <br>
                 <hr>
-                <a href="#" class="quemSeguirTxt">Procurar por pessoas conhecidas</a>
+                <a href="/quem_seguir" class="quemSeguirTxt">Procurar por pessoas conhecidas</a>
             </div>
         </div>
 
