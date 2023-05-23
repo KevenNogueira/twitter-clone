@@ -105,4 +105,11 @@ class AppController extends Action
 
         header('Location: /timeline');
     }
+
+    public function perfil()
+    {
+        $this->validaAutenticacao();
+
+        $this->render('perfil');
+    }
 }

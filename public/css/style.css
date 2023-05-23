@@ -195,3 +195,22 @@ h2 {
 .tweet:hover {
   background-color: #f5f8fa;
 }
+
+.heart {
+  color: red;
+}
+
+.comments {
+  color: #1da1f2;
+}
+
+.comments:hover {
+  font-size: 20px;
+}
+.heart:hover {
+  font-size: 20px;
+}
+
+.bordas {
+  border: 1px solid red;
+}

@@ -1,8 +1,21 @@
 <nav class="navbar navbar-expand-lg menu mb-5">
     <div class="container">
         <div class="navbar-nav">
-            <a href="/timeline" class="menuItem">Home</a>
-            <a href="/sair" class="menuItem">Sair</a>
+            <a href="/timeline" class="menuItem">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="/sair" class="menuItem">
+                <i class="fa-solid fa-power-off"></i>
+                Sair
+            </a>
+
+            <a href="/perfil" class="menuItem">
+                <i class="fa-solid fa-user"></i>
+                Perfil
+            </a>
+
             <img src="/img/twitter_logo.png" alt="Logo" class="menuIco">
         </div>
     </div>
@@ -87,6 +100,9 @@
                         </p>
                         <br>
 
+                        <i class="fa-solid fa-heart mr-2 heart"></i>
+                        <i class="fa-solid fa-comments comments"></i>
+
                         <?php if ($tweet['id_usuario'] == $_SESSION['id']) { ?>
 
                             <form action="/remove_tweet" method="post">
@@ -108,7 +124,10 @@
                 <span class="quemSeguirTitulo">Quem Seguir</span>
                 <br>
                 <hr>
-                <a href="/quem_seguir" class="quemSeguirTxt">Procurar por pessoas conhecidas</a>
+                <a href="/quem_seguir" class="quemSeguirTxt">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Procurar por pessoas conhecidas
+                </a>
             </div>
         </div>
 

@@ -68,6 +68,12 @@ class Route extends Bootstrap
             'action' => 'removeTweet'
         );
 
+        $routes['perfil'] = array(
+            'route' => '/perfil',
+            'controller' => 'AppController',
+            'action' => 'perfil'
+        );
+
         $this->setRoute($routes);
     }
 }
