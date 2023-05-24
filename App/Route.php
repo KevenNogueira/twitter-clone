@@ -74,6 +74,12 @@ class Route extends Bootstrap
             'action' => 'perfil'
         );
 
+        $routes['biografia'] = array(
+            'route' => '/biografia',
+            'controller' => 'AppController',
+            'action' => 'biografia'
+        );
+
         $this->setRoute($routes);
     }
 }

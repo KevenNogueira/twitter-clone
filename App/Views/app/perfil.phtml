@@ -39,7 +39,7 @@
                     <div class="row mt-2 mb-2">
                         <div class="col mb-2">
                             <span class="perfilPainelNome">
-                                Usuarios
+                                <?php echo $this->view->infoUsuario['nome'] ?>
                             </span>
                         </div>
                     </div>
@@ -49,25 +49,26 @@
                         <div class="col">
                             <span class="perfilPainelItem">Tweets</span><br>
                             <span class="perfilPainelItemValor">
-                                Tweets
+                                <?php echo $this->view->totalTweet['total_tweet'] ?>
                             </span>
                         </div>
 
                         <div class="col">
                             <span class="perfilPainelItem">Seguindo</span><br>
                             <span class="perfilPainelItemValor">
-                                Seguindo
+                                <?php echo $this->view->totalSeguindo['total_seguindo'] ?>
                             </span>
                         </div>
 
                         <div class="col">
                             <span class="perfilPainelItem">Seguidores</span><br>
                             <span class="perfilPainelItemValor">
-                                Seguidores
+                                <?php echo $this->view->totalSeguidores['total_seguidores'] ?>
                             </span>
                         </div>
 
                     </div>
+
                 </div>
             </div>
 
@@ -82,8 +83,9 @@
                     </div>
                     <div class="row mt-2 mb-2">
                         <div class="col mb-2">
-                            <form action="#" method="post">
-                                <textarea class="form-control" name="" id="" rows="3"></textarea>
+                            <form action="/biografia" method="post">
+                                <textarea class="form-control mb-2" maxlength="195" name="biografia" id="" rows="3"><?php echo $this->view->infoUsuario['biografia'] ?> </textarea>
+                                <span class="info">Total aceito de 195 caracteres</span>
                                 <div class="col mt-2 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-outline-primary">Salvar</button>
                                 </div>

@@ -10,6 +10,7 @@ class Usuario extends Model
     private $nome;
     private $email;
     private $senha;
+    private $biografia;
 
     public function __get($attr)
     {
@@ -173,7 +174,8 @@ class Usuario extends Model
     {
         $query = "
             SELECT
-                nome
+                nome,
+                biografia
             FROM
                 usuarios
             WHERE
@@ -239,5 +241,23 @@ class Usuario extends Model
         $stmt->execute();
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+
+    public function salvarBiografia()
+    {
+        $query = "
+            UPDATE 
+                usuarios 
+            SET 
+                biografia = ?
+            WHERE 
+                id = ?;
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(1, $this->__get('biografia'));
+        $stmt->bindValue(2, $this->__get('id'));
+        $stmt->execute();
     }
 }

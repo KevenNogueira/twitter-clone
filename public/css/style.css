@@ -239,3 +239,8 @@ h2 {
   font-size: 15px;
   outline: none;
 }
+
+.info {
+  color: #657786;
+  font-size: 13px;
+}

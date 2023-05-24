@@ -26,7 +26,7 @@ class AppController extends Action
 
         $usuario = Container::getModel('Usuario');
         $usuario->__set('id', $_SESSION['id']);
-        $this->view->nomeUsuario = $usuario->getInfoUsuario();
+        $this->view->infoUsuario = $usuario->getInfoUsuario();
         $this->view->totalTweet = $usuario->getTotalTweets();
         $this->view->totalSeguindo = $usuario->getTotalSeguindo();
         $this->view->totalSeguidores = $usuario->getTotalSeguidores();
@@ -66,7 +66,7 @@ class AppController extends Action
 
         $usuario = Container::getModel('Usuario');
         $usuario->__set('id', $_SESSION['id']);
-        $this->view->nomeUsuario = $usuario->getInfoUsuario();
+        $this->view->infoUsuario = $usuario->getInfoUsuario();
         $this->view->totalTweet = $usuario->getTotalTweets();
         $this->view->totalSeguindo = $usuario->getTotalSeguindo();
         $this->view->totalSeguidores = $usuario->getTotalSeguidores();
@@ -110,6 +110,27 @@ class AppController extends Action
     {
         $this->validaAutenticacao();
 
+        $usuario = Container::getModel('Usuario');
+        $usuario->__set('id', $_SESSION['id']);
+        $this->view->infoUsuario = $usuario->getInfoUsuario();
+        $this->view->totalTweet = $usuario->getTotalTweets();
+        $this->view->totalSeguindo = $usuario->getTotalSeguindo();
+        $this->view->totalSeguidores = $usuario->getTotalSeguidores();
+
         $this->render('perfil');
+    }
+
+    public function biografia()
+    {
+
+        $this->validaAutenticacao();
+
+        $usuario = Container::getModel('Usuario');
+        $usuario->__set('id', $_SESSION['id']);
+        $usuario->__set('biografia', $_POST['biografia']);
+
+        $usuario->salvarBiografia();
+
+        header('Location: /perfil');
     }
 }
