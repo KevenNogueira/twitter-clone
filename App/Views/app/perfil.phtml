@@ -6,14 +6,14 @@
                 Home
             </a>
 
+            <a href="/perfil" class="menuItem">
+                <i class="fa-solid fa-user"></i>
+                Perfil
+            </a>
+
             <a href="/sair" class="menuItem">
                 <i class="fa-solid fa-power-off"></i>
                 Sair
-            </a>
-
-            <a href="#" class="menuItem">
-                <i class="fa-solid fa-user"></i>
-                Perfil
             </a>
 
             <img src="/img/twitter_logo.png" alt="Logo" class="menuIco">
@@ -24,82 +24,165 @@
 <div class="container mt-5">
 
     <div class="row pt-2">
-
         <div class="col">
-            <div class="perfilTopo">
-
-            </div>
-
-            <div class="perfilPainel">
-                <div class="row mt-2 mb-2">
-                    <div class="col mb-2">
-                        <span class="perfilPainelNome">
-                            Nome do usuarios
-                        </span>
-                    </div>
-                </div>
-
-                <div class="row mb-3 bordas">
-
-                    <div class="col bordas">
-                        <span class="perfilPainelItem">Tweets</span><br>
-                        <span class="perfilPainelItemValor">
-                            AAAAA
-                        </span>
-                    </div>
-
-                    <div class="col bordas">
-                        <span class="perfilPainelItem">Seguindo</span><br>
-                        <span class="perfilPainelItemValor">
-                            Seguidores
-                        </span>
-                    </div>
-
-                    <div class="col bordas">
-                        <span class="perfilPainelItem">Seguidores</span><br>
-                        <span class="perfilPainelItemValor">
-                            Seguindo
-                        </span>
-                    </div>
-
-                </div>
-
-                <div class="row mt-2 mb-2">
-                    <div class="col mb-2">
-                        <span class="perfilPainelNome">
-                            Sobre mim
-                        </span>
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-md-6 ">
-                        <div class="form-group shadow-textarea">
-                            <textarea class="form-control z-depth-1" placeholder="Digite informações sobre a sua pessoa!" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-outline-info">Salvar</button>
-                    </div>
-                    <div class="col-md-6 ">
-                        <div class="form-group">
-                            <div class="row ml-2 mb-3">
-                                <i class="fa-brands fa-instagram fa-lg mr-2"></i>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="row ml-2 mb-3">
-                                <i class="fa-brands fa-facebook fa-lg mr-2"></i>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="row ml-2 mb-3">
-                                <i class="fa-brands fa-linkedin fa-lg mr-2"></i>
-                                <input type="text" name="" id="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="perfilTopoUsuario">
 
             </div>
         </div>
     </div>
 
+    <div class="row pt-2">
+        <div class="col-md-6">
+            <div class="boxPadrao">
+                <div class="perfilPainel">
+
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Usuarios
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+
+                        <div class="col">
+                            <span class="perfilPainelItem">Tweets</span><br>
+                            <span class="perfilPainelItemValor">
+                                Tweets
+                            </span>
+                        </div>
+
+                        <div class="col">
+                            <span class="perfilPainelItem">Seguindo</span><br>
+                            <span class="perfilPainelItemValor">
+                                Seguindo
+                            </span>
+                        </div>
+
+                        <div class="col">
+                            <span class="perfilPainelItem">Seguidores</span><br>
+                            <span class="perfilPainelItemValor">
+                                Seguidores
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="boxPadrao">
+                <div class="perfilPainel">
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Biografia
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <form action="#" method="post">
+                                <textarea class="form-control" name="" id="" rows="3"></textarea>
+                                <div class="col mt-2 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-outline-primary">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="boxPadrao">
+                <div class="perfilPainel">
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Redes Sociais
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <form action="#" method="post">
+                                <div class="form-group">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-brands fa-facebook fa-lg" style="color: #3b5998;"></i>
+                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Facebook">
+                                        <i class="fa-brands fa-instagram fa-lg" style="color: #e1306c;"></i>
+                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Instagram">
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-brands fa-linkedin fa-lg" style="color: #0e76a8;"></i>
+                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Linkedin">
+                                        <i class="fa-brands fa-tiktok fa-lg" style="color:  #000;"></i>
+                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Tiktok">
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-link fa-lg"></i>
+                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Outros">
+                                    </div>
+                                </div>
+
+                                <div class="col mt-2 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-outline-primary">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="card boxPadrao">
+                        <div class="card-body">
+                            <form action="#" method="get">
+                                <div class="input-group mb-3">
+                                    <input type="text" name="" class="form-control" placeholder="Quem você está procurando?">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Procurar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="card boxPadrao">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Nome User
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end">
+                                    <div>
+
+                                        <a href="/#" class="btn btn-success">
+                                            Seguir
+                                        </a>
+
+                                        <a href="#" class="btn btn-danger">
+                                            Deixar de seguir
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </div>

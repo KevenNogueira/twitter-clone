@@ -1,14 +1,22 @@
-<nav class="navbar navbar-expand-lg menu">
+<nav class="navbar navbar-expand-lg menu mb-5">
 	<div class="container">
 		<div class="navbar-nav">
-			<a class="menuItem" href="/timeline">
+			<a href="/timeline" class="menuItem">
+				<i class="fa-solid fa-house"></i>
 				Home
 			</a>
 
-			<a class="menuItem" href="/sair">
+			<a href="/perfil" class="menuItem">
+				<i class="fa-solid fa-user"></i>
+				Perfil
+			</a>
+
+			<a href="/sair" class="menuItem">
+				<i class="fa-solid fa-power-off"></i>
 				Sair
 			</a>
-			<img src="/img/twitter_logo.png" class="menuIco" />
+
+			<img src="/img/twitter_logo.png" alt="Logo" class="menuIco">
 		</div>
 	</div>
 </nav>
@@ -18,7 +26,7 @@
 
 		<div class="col-md-3">
 
-			<div class="perfil">
+			<div class="boxPadrao">
 				<div class="perfilTopo">
 
 				</div>
@@ -67,7 +75,7 @@
 
 			<div class="row mb-2">
 				<div class="col">
-					<div class="card">
+					<div class="card boxPadrao">
 						<div class="card-body">
 							<form action="/quem_seguir" method="get">
 								<div class="input-group mb-3">
@@ -85,7 +93,7 @@
 			<?php foreach ($this->view->usuarios as $indexe_arr => $usuario) { ?>
 				<div class="row mb-2">
 					<div class="col">
-						<div class="card">
+						<div class="card boxPadrao">
 							<div class="card-body">
 								<div class="row">
 									<div class="col-md-6">
