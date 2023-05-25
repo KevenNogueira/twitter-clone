@@ -65,6 +65,67 @@
                         </div>
 
                     </div>
+                    <hr>
+
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Biografia
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <span class="perfilPainelItemBiografica">
+                                <?php echo nl2br($this->view->infoUsuario['biografia']) ?>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Redes Sociais
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-facebook fa-lg" style="color: #3b5998;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['facebook'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['facebook'] ?>" placeholder="Facebook" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-instagram fa-lg" style="color: #e1306c;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['instagram'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['instagram'] ?>" placeholder="Instagram" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-linkedin fa-lg" style="color: #0e76a8;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['linkedin'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['linkedin'] ?>" placeholder="Linkedin" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-tiktok fa-lg" style="color:  #000;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['tiktok'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['tiktok'] ?>" placeholder="Tiktok" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-link fa-lg"></i>
+                                <a href="<?php echo $this->view->infoUsuario['outros_links'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['outros_links'] ?>" placeholder="Outros" disabled>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -79,8 +140,7 @@
                         <div class="card-body">
                             <form action="/quem_seguir" method="get">
                                 <div class="input-group mb-3">
-                                    <input type="text" name="pesquisarPor" class="form-control"
-                                        placeholder="Quem você está procurando?">
+                                    <input type="text" name="pesquisarPor" class="form-control" placeholder="Quem você está procurando?">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">Procurar</button>
                                     </div>
@@ -92,37 +152,35 @@
             </div>
 
             <?php foreach ($this->view->usuarios as $indexe_arr => $usuario) { ?>
-            <div class="row mb-2">
-                <div class="col">
-                    <div class="card boxPadrao">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <?php echo $usuario['nome'] . '<br>' ?>
-                                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="card boxPadrao">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <?php echo $usuario['nome'] . '<br>' ?>
+                                    </div>
 
-                                <div class="col-md-6 d-flex justify-content-end">
-                                    <div>
-                                        <?php if ($usuario['bool_seguindo'] == 0) { ?>
-                                        <a href="/acao?acao=seguir&id_usuario=<?php echo $usuario['id'] ?>"
-                                            class="btn btn-success">
-                                            Seguir
-                                        </a>
-                                        <?php } ?>
+                                    <div class="col-md-6 d-flex justify-content-end">
+                                        <div>
+                                            <?php if ($usuario['bool_seguindo'] == 0) { ?>
+                                                <a href="/acao?acao=seguir&id_usuario=<?php echo $usuario['id'] ?>" class="btn btn-success">
+                                                    Seguir
+                                                </a>
+                                            <?php } ?>
 
-                                        <?php if ($usuario['bool_seguindo'] == 1) { ?>
-                                        <a href="/acao?acao=deixar_de_seguir&id_usuario=<?php echo $usuario['id'] ?>"
-                                            class="btn btn-danger">
-                                            Deixar de seguir
-                                        </a>
-                                        <?php } ?>
+                                            <?php if ($usuario['bool_seguindo'] == 1) { ?>
+                                                <a href="/acao?acao=deixar_de_seguir&id_usuario=<?php echo $usuario['id'] ?>" class="btn btn-danger">
+                                                    Deixar de seguir
+                                                </a>
+                                            <?php } ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
             <?php } ?>
 

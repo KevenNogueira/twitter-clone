@@ -91,8 +91,15 @@ class AppController extends Action
 
             $usuario->deixarSeguirUsuario($id_usuario_seguindo);
         }
+        if ($acao != 'deixar_de_seguir_perfil') {
+            header('Location: /quem_seguir');
+        }
 
-        header('Location: /quem_seguir');
+        if ($acao == 'deixar_de_seguir_perfil') {
+
+            $usuario->deixarSeguirUsuario($id_usuario_seguindo);
+            header('Location: /perfil');
+        }
     }
 
     public function removeTweet()
@@ -116,6 +123,7 @@ class AppController extends Action
         $this->view->totalTweet = $usuario->getTotalTweets();
         $this->view->totalSeguindo = $usuario->getTotalSeguindo();
         $this->view->totalSeguidores = $usuario->getTotalSeguidores();
+        $this->view->seguidores = $usuario->getSeguidores();
 
         $this->render('perfil');
     }
@@ -132,5 +140,46 @@ class AppController extends Action
         $usuario->salvarBiografia();
 
         header('Location: /perfil');
+    }
+
+    public function redesSociais()
+    {
+
+        $this->validaAutenticacao();
+
+        $usuario = Container::getModel('Usuario');
+
+        $usuario->__set('id', $_SESSION['id']);
+        $usuario->__set('facebook', $_POST['facebook']);
+        $usuario->__set('instagram', $_POST['instagram']);
+        $usuario->__set('linkedin', $_POST['linkedin']);
+        $usuario->__set('tiktok', $_POST['tiktok']);
+        $usuario->__set('outrosLinks', $_POST['outros']);
+
+        $usuario->salvarRedesSociais();
+
+        header('Location: /perfil');
+    }
+
+    public function seguindo()
+    {
+        $this->validaAutenticacao();
+
+        $pesquisaPor = isset($_GET['pesquisarPor']) ? $_GET['pesquisarPor'] : '';
+
+        if (!empty($pesquisaPor)) {
+            $usuario = Container::getModel('Usuario');
+            $usuario->__set('id', $_SESSION['id']);
+            $usuario->__set('nome', $pesquisaPor);
+            $this->view->seguidores = $usuario->pesquisaSeguidores();
+            $this->view->infoUsuario = $usuario->getInfoUsuario();
+            $this->view->totalTweet = $usuario->getTotalTweets();
+            $this->view->totalSeguindo = $usuario->getTotalSeguindo();
+            $this->view->totalSeguidores = $usuario->getTotalSeguidores();
+
+            $this->render('perfil');
+        } else {
+            header('Location: /perfil');
+        }
     }
 }

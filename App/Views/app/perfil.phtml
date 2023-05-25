@@ -84,7 +84,8 @@
                     <div class="row mt-2 mb-2">
                         <div class="col mb-2">
                             <form action="/biografia" method="post">
-                                <textarea class="form-control mb-2" maxlength="195" name="biografia" id="" rows="3"><?php echo $this->view->infoUsuario['biografia'] ?> </textarea>
+                                <textarea class="form-control mb-2" maxlength="195" name="biografia" id=""
+                                    rows="3"><?php echo $this->view->infoUsuario['biografia'] ?> </textarea>
                                 <span class="info">Total aceito de 195 caracteres</span>
                                 <div class="col mt-2 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-outline-primary">Salvar</button>
@@ -107,23 +108,33 @@
                     </div>
                     <div class="row mt-2 mb-2">
                         <div class="col mb-2">
-                            <form action="#" method="post">
+                            <form action="/redes_sociais" method="post">
                                 <div class="form-group">
                                     <div class="d-flex align-items-center">
                                         <i class="fa-brands fa-facebook fa-lg" style="color: #3b5998;"></i>
-                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Facebook">
+                                        <input class="col-md-5 inputItem form-control" type="text" name="facebook"
+                                            value="<?php echo $this->view->infoUsuario['facebook'] ?>"
+                                            placeholder="Facebook">
                                         <i class="fa-brands fa-instagram fa-lg" style="color: #e1306c;"></i>
-                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Instagram">
+                                        <input class="col-md-5 inputItem form-control" type="text" name="instagram"
+                                            value="<?php echo $this->view->infoUsuario['instagram'] ?>"
+                                            placeholder="Instagram">
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <i class="fa-brands fa-linkedin fa-lg" style="color: #0e76a8;"></i>
-                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Linkedin">
+                                        <input class="col-md-5 inputItem form-control" type="text" name="linkedin"
+                                            value="<?php echo $this->view->infoUsuario['linkedin'] ?>"
+                                            placeholder="Linkedin">
                                         <i class="fa-brands fa-tiktok fa-lg" style="color:  #000;"></i>
-                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Tiktok">
+                                        <input class="col-md-5 inputItem form-control" type="text" name="tiktok"
+                                            value="<?php echo $this->view->infoUsuario['tiktok'] ?>"
+                                            placeholder="Tiktok">
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <i class="fa-solid fa-link fa-lg"></i>
-                                        <input class="col-md-5 inputItem form-control" type="text" name="" id="" placeholder="Outros">
+                                        <input class="col-md-5 inputItem form-control" type="text" name="outros"
+                                            value="<?php echo $this->view->infoUsuario['outros_links'] ?>"
+                                            placeholder="Outros">
                                     </div>
                                 </div>
 
@@ -145,9 +156,10 @@
                 <div class="col">
                     <div class="card boxPadrao">
                         <div class="card-body">
-                            <form action="#" method="get">
+                            <form action="/seguindo" method="get">
                                 <div class="input-group mb-3">
-                                    <input type="text" name="" class="form-control" placeholder="Quem você está procurando?">
+                                    <input type="text" name="pesquisarPor" class="form-control"
+                                        placeholder="Quem você está procurando?">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">Procurar</button>
                                     </div>
@@ -160,27 +172,37 @@
 
             <div class="row mb-2">
                 <div class="col">
+
+                    <?php foreach ($this->view->seguidores as $indece => $seguidor) { ?>
+
                     <div class="card boxPadrao">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    Nome User
+                            <div class="row mb-2">
+                                <div class="col-md-6 perfilPainelNome">
+                                    <?php echo $seguidor['seguidor'] ?>
+
                                 </div>
+
                                 <div class="col-md-6 d-flex justify-content-end">
                                     <div>
-
-                                        <a href="/#" class="btn btn-success">
-                                            Seguir
-                                        </a>
-
-                                        <a href="#" class="btn btn-danger">
+                                        <a href="/acao?acao=deixar_de_seguir_perfil&id_usuario=<?php echo $seguidor['id_usuario_seguindo'] ?>"
+                                            class="btn btn-outline-danger">
                                             Deixar de seguir
                                         </a>
                                     </div>
                                 </div>
                             </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col perfilPainelItemBiografica">
+                                    <?php echo nl2br($seguidor['biografia']) ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <?php } ?>
+
                 </div>
             </div>
         </div>
