@@ -1,120 +1,189 @@
-<nav class="navbar navbar-expand-lg menu">
-	<div class="container">
-		<div class="navbar-nav">
-			<a class="menuItem" href="/timeline">
-				Home
-			</a>
+<nav class="navbar navbar-expand-lg menu mb-5">
+    <div class="container">
+        <div class="navbar-nav">
+            <a href="/timeline" class="menuItem">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
 
-			<a class="menuItem" href="/sair">
-				Sair
-			</a>
-			<img src="/img/twitter_logo.png" class="menuIco" />
-		</div>
-	</div>
+            <a href="/perfil" class="menuItem">
+                <i class="fa-solid fa-user"></i>
+                Perfil
+            </a>
+
+            <a href="/sair" class="menuItem">
+                <i class="fa-solid fa-power-off"></i>
+                Sair
+            </a>
+
+            <img src="/img/twitter_logo.png" alt="Logo" class="menuIco">
+        </div>
+    </div>
 </nav>
 
 <div class="container mt-5">
-	<div class="row pt-2">
+    <div class="row pt-2">
 
-		<div class="col-md-3">
+        <div class="col-md-3">
 
-			<div class="perfil">
-				<div class="perfilTopo">
+            <div class="boxPadrao">
+                <div class="perfilTopo">
 
-				</div>
+                </div>
 
-				<div class="perfilPainel">
+                <div class="perfilPainel">
 
-					<div class="row mt-2 mb-2">
-						<div class="col mb-2">
-							<span class="perfilPainelNome">
-								<?php echo $this->view->nomeUsuario['nome'] ?>
-							</span>
-						</div>
-					</div>
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                <?php echo $this->view->infoUsuario['nome'] ?>
+                            </span>
+                        </div>
+                    </div>
 
-					<div class="row mb-2">
+                    <div class="row mb-2">
 
-						<div class="col">
-							<span class="perfilPainelItem">Tweets</span><br>
-							<span class="perfilPainelItemValor">
-								<?php echo $this->view->totalTweet['total_tweet'] ?>
-							</span>
-						</div>
+                        <div class="col">
+                            <span class="perfilPainelItem">Tweets</span><br>
+                            <span class="perfilPainelItemValor">
+                                <?php echo $this->view->totalTweet['total_tweet'] ?>
+                            </span>
+                        </div>
 
-						<div class="col">
-							<span class="perfilPainelItem">Seguindo</span><br>
-							<span class="perfilPainelItemValor">
-								<?php echo $this->view->totalSeguindo['total_seguindo'] ?>
-							</span>
-						</div>
+                        <div class="col">
+                            <span class="perfilPainelItem">Seguindo</span><br>
+                            <span class="perfilPainelItemValor">
+                                <?php echo $this->view->totalSeguindo['total_seguindo'] ?>
+                            </span>
+                        </div>
 
-						<div class="col">
-							<span class="perfilPainelItem">Seguidores</span><br>
-							<span class="perfilPainelItemValor">
-								<?php echo $this->view->totalSeguidores['total_seguidores'] ?>
-							</span>
-						</div>
+                        <div class="col">
+                            <span class="perfilPainelItem">Seguidores</span><br>
+                            <span class="perfilPainelItemValor">
+                                <?php echo $this->view->totalSeguidores['total_seguidores'] ?>
+                            </span>
+                        </div>
 
-					</div>
+                    </div>
+                    <hr>
 
-				</div>
-			</div>
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Biografia
+                            </span>
+                        </div>
+                    </div>
 
-		</div>
+                    <div class="row">
+                        <div class="col">
+                            <span class="perfilPainelItemBiografica">
+                                <?php echo nl2br($this->view->infoUsuario['biografia']) ?>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
 
-		<div class="col-md-6">
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Redes Sociais
+                            </span>
+                        </div>
+                    </div>
 
-			<div class="row mb-2">
-				<div class="col">
-					<div class="card">
-						<div class="card-body">
-							<form action="/quem_seguir" method="get">
-								<div class="input-group mb-3">
-									<input type="text" name="pesquisarPor" class="form-control" placeholder="Quem você está procurando?">
-									<div class="input-group-append">
-										<button class="btn btn-primary" type="submit">Procurar</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-facebook fa-lg" style="color: #3b5998;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['facebook'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['facebook'] ?>" placeholder="Facebook" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-instagram fa-lg" style="color: #e1306c;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['instagram'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['instagram'] ?>" placeholder="Instagram" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-linkedin fa-lg" style="color: #0e76a8;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['linkedin'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['linkedin'] ?>" placeholder="Linkedin" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-tiktok fa-lg" style="color:  #000;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['tiktok'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['tiktok'] ?>" placeholder="Tiktok" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-link fa-lg"></i>
+                                <a href="<?php echo $this->view->infoUsuario['outros_links'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['outros_links'] ?>" placeholder="Outros" disabled>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-			<?php foreach ($this->view->usuarios as $indexe_arr => $usuario) { ?>
-				<div class="row mb-2">
-					<div class="col">
-						<div class="card">
-							<div class="card-body">
-								<div class="row">
-									<div class="col-md-6">
-										<?php echo $usuario['nome'] . '<br>' ?>
-									</div>
+                </div>
+            </div>
 
-									<div class="col-md-6 d-flex justify-content-end">
-										<div>
-											<?php if ($usuario['bool_seguindo'] == 0) { ?>
-												<a href="/acao?acao=seguir&id_usuario=<?php echo $usuario['id'] ?>" class="btn btn-success">
-													Seguir
-												</a>
-											<?php } ?>
+        </div>
 
-											<?php if ($usuario['bool_seguindo'] == 1) { ?>
-												<a href="/acao?acao=deixar_de_seguir&id_usuario=<?php echo $usuario['id'] ?>" class="btn btn-danger">
-													Deixar de seguir
-												</a>
-											<?php } ?>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+        <div class="col-md-6">
 
-			<?php } ?>
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="card boxPadrao">
+                        <div class="card-body">
+                            <form action="/quem_seguir" method="get">
+                                <div class="input-group mb-3">
+                                    <input type="text" name="pesquisarPor" class="form-control" placeholder="Quem você está procurando?">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Procurar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+            <?php foreach ($this->view->usuarios as $indexe_arr => $usuario) { ?>
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="card boxPadrao">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <?php echo $usuario['nome'] . '<br>' ?>
+                                    </div>
+
+                                    <div class="col-md-6 d-flex justify-content-end">
+                                        <div>
+                                            <?php if ($usuario['bool_seguindo'] == 0) { ?>
+                                                <a href="/acao?acao=seguir&id_usuario=<?php echo $usuario['id'] ?>" class="btn btn-success">
+                                                    Seguir
+                                                </a>
+                                            <?php } ?>
+
+                                            <?php if ($usuario['bool_seguindo'] == 1) { ?>
+                                                <a href="/acao?acao=deixar_de_seguir&id_usuario=<?php echo $usuario['id'] ?>" class="btn btn-danger">
+                                                    Deixar de seguir
+                                                </a>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <?php } ?>
+
+        </div>
+    </div>
 </div>

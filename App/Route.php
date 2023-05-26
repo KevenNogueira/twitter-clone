@@ -68,6 +68,30 @@ class Route extends Bootstrap
             'action' => 'removeTweet'
         );
 
+        $routes['perfil'] = array(
+            'route' => '/perfil',
+            'controller' => 'AppController',
+            'action' => 'perfil'
+        );
+
+        $routes['biografia'] = array(
+            'route' => '/biografia',
+            'controller' => 'AppController',
+            'action' => 'biografia'
+        );
+
+        $routes['redes_sociais'] = array(
+            'route' => '/redes_sociais',
+            'controller' => 'AppController',
+            'action' => 'redesSociais'
+        );
+
+        $routes['seguindo'] = array(
+            'route' => '/seguindo',
+            'controller' => 'AppController',
+            'action' => 'seguindo'
+        );
+
         $this->setRoute($routes);
     }
 }

@@ -1,8 +1,21 @@
 <nav class="navbar navbar-expand-lg menu mb-5">
     <div class="container">
         <div class="navbar-nav">
-            <a href="/timeline" class="menuItem">Home</a>
-            <a href="/sair" class="menuItem">Sair</a>
+            <a href="/timeline" class="menuItem">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="/perfil" class="menuItem">
+                <i class="fa-solid fa-user"></i>
+                Perfil
+            </a>
+
+            <a href="/sair" class="menuItem">
+                <i class="fa-solid fa-power-off"></i>
+                Sair
+            </a>
+
             <img src="/img/twitter_logo.png" alt="Logo" class="menuIco">
         </div>
     </div>
@@ -13,7 +26,7 @@
 
         <div class="col-md-3">
 
-            <div class="perfil">
+            <div class="boxPadrao">
                 <div class="perfilTopo">
 
                 </div>
@@ -23,7 +36,7 @@
                     <div class="row mt-2 mb-2">
                         <div class="col mb-2">
                             <span class="perfilPainelNome">
-                                <?php echo $this->view->nomeUsuario['nome'] ?>
+                                <?php echo $this->view->infoUsuario['nome'] ?>
                             </span>
                         </div>
                     </div>
@@ -52,6 +65,67 @@
                         </div>
 
                     </div>
+                    <hr>
+
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Biografia
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <span class="perfilPainelItemBiografica">
+                                <?php echo nl2br($this->view->infoUsuario['biografia']) ?>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mt-2 mb-2">
+                        <div class="col mb-2">
+                            <span class="perfilPainelNome">
+                                Redes Sociais
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-facebook fa-lg" style="color: #3b5998;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['facebook'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['facebook'] ?>" placeholder="Facebook" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-instagram fa-lg" style="color: #e1306c;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['instagram'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['instagram'] ?>" placeholder="Instagram" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-linkedin fa-lg" style="color: #0e76a8;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['linkedin'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['linkedin'] ?>" placeholder="Linkedin" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-tiktok fa-lg" style="    color:  #000;"></i>
+                                <a href="<?php echo $this->view->infoUsuario['tiktok'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['tiktok'] ?>" placeholder="Tiktok" disabled>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-square-arrow-up-right fa-lg"></i>
+                                <a href="<?php echo $this->view->infoUsuario['outros_links'] ?>">
+                                    <input class="col inputItem inputItemTimeline" type="text" value="<?php echo $this->view->infoUsuario['outros_links'] ?>" placeholder="Outros" disabled>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -62,7 +136,8 @@
             <div class="row mb-2">
                 <div class="col tweetBox">
                     <form action="/tweet" method="post">
-                        <textarea class="form-control" name="tweet" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control mb-2" name="tweet" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <span class="info">Total aceito de 200 caracteres</span>
                         <div class="col mt-2 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary">Tweet</button>
                         </div>
@@ -83,10 +158,15 @@
                         </p>
 
                         <p>
-                            <?php echo $tweet['tweet'] ?>
+                            <?php echo nl2br($tweet['tweet']) ?>
                         </p>
-                        <br>
 
+                        <div class="row mt-3">
+                            <div class="col">
+                                <i class="fa-solid fa-heart mr-2 heart"></i>
+                                <i class="fa-solid fa-comments comments"></i>
+                            </div>
+                        </div>
                         <?php if ($tweet['id_usuario'] == $_SESSION['id']) { ?>
 
                             <form action="/remove_tweet" method="post">
@@ -101,6 +181,40 @@
                     </div>
                 </div>
             <?php } ?>
+
+            <?php if ($this->view->totalPag != 0) { ?>
+
+                <div class="row mt-3">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="?pagina=1" aria-label="Previous">
+                                    <span aria-hidden="true">Primeira</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+
+                            <?php for ($i = 1; $i <= $this->view->totalPag; $i++) { ?>
+
+                                <li class="page-item <?php echo $this->view->pagAtiva == $i ? 'active' : '' ?>">
+                                    <a class="page-link active " href="?pagina=<?php echo $i ?>">
+                                        <?php echo $i ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
+
+                            <li class="page-item">
+                                <a class="page-link" href="?pagina=<?php echo $this->view->totalPag ?>" aria-label="Next">
+                                    <span aria-hidden="true">Ultima</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            <?php } ?>
+
         </div>
 
         <div class="col-md-3">
@@ -108,7 +222,10 @@
                 <span class="quemSeguirTitulo">Quem Seguir</span>
                 <br>
                 <hr>
-                <a href="/quem_seguir" class="quemSeguirTxt">Procurar por pessoas conhecidas</a>
+                <a href="/quem_seguir" class="quemSeguirTxt">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Procurar por pessoas conhecidas
+                </a>
             </div>
         </div>
 

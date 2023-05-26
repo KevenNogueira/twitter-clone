@@ -10,6 +10,11 @@ class Usuario extends Model
     private $nome;
     private $email;
     private $senha;
+    private $facebook;
+    private $instagram;
+    private $linkedin;
+    private $tiktok;
+    private $outrosLinks;
 
     public function __get($attr)
     {
@@ -173,7 +178,13 @@ class Usuario extends Model
     {
         $query = "
             SELECT
-                nome
+                nome,
+                biografia,
+                facebook,
+                instagram,
+                linkedin,
+                tiktok,
+                outros_links
             FROM
                 usuarios
             WHERE
@@ -239,5 +250,110 @@ class Usuario extends Model
         $stmt->execute();
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function getSeguidores()
+    {
+        $query = "
+            SELECT 
+                u.id,
+                u.nome,
+                us.id_usuario_seguindo,
+                u2.nome AS seguidor,
+                u2.biografia AS biografia 
+            FROM
+                usuarios u 
+            LEFT JOIN
+                usuarios_seguidores us 
+            ON	
+                (u.id = us.id_usuario)
+            INNER JOIN 
+                usuarios u2 
+            ON
+                (us.id_usuario_seguindo = u2.id)
+            WHERE 
+                u.id = ?
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(1, $this->__get('id'));
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+    public function salvarBiografia()
+    {
+        $query = "
+            UPDATE 
+                usuarios 
+            SET 
+                biografia = ?
+            WHERE 
+                id = ?
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(1, $this->__get('biografia'));
+        $stmt->bindValue(2, $this->__get('id'));
+        $stmt->execute();
+    }
+
+    public function salvarRedesSociais()
+    {
+        $query = "
+            UPDATE
+                usuarios
+            SET
+                facebook = ?,
+                instagram = ?,
+                linkedin = ?,
+                tiktok = ?,
+                outros_links = ?
+            WHERE
+                id = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(1, $this->__get('facebook'));
+        $stmt->bindValue(2, $this->__get('instagram'));
+        $stmt->bindValue(3, $this->__get('linkedin'));
+        $stmt->bindValue(4, $this->__get('tiktok'));
+        $stmt->bindValue(5, $this->__get('outrosLinks'));
+        $stmt->bindValue(6, $this->__get('id'));
+        $stmt->execute();
+    }
+
+    public function pesquisaSeguidores()
+    {
+        $query = "
+            SELECT 
+                u.id,
+                u.nome,
+                us.id_usuario_seguindo,
+                u2.nome AS seguidor,
+                u2.biografia AS biografia 
+            FROM
+                usuarios u 
+            LEFT JOIN
+                usuarios_seguidores us 
+            ON	
+                (u.id = us.id_usuario)
+            INNER JOIN 
+                usuarios u2 
+            ON
+                (us.id_usuario_seguindo = u2.id)
+            WHERE 
+                u.id = ?
+            AND 	
+                u2.nome LIKE ?
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(1, $this->__get('id'));
+        $stmt->bindValue(2, '%' . $this->__get('nome') . '%');
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
