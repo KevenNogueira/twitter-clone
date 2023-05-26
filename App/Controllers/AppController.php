@@ -22,7 +22,15 @@ class AppController extends Action
         $tweet = Container::getModel('Tweet');
         $tweet->__set('id_usuario', $_SESSION['id']);
 
-        $this->view->tweets = $tweet->getAll();
+        $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+        $this->view->pagAtiva = $pagina;
+
+        $limit = 5;
+        $offSet = ($pagina - 1) * $limit;
+        $this->view->tweets = $tweet->getAll($limit, $offSet);
+
+        $totalTweets = $tweet->getTotalRegistros();
+        $this->view->totalPag = ceil($totalTweets['total'] / $limit);
 
         $usuario = Container::getModel('Usuario');
         $usuario->__set('id', $_SESSION['id']);

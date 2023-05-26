@@ -41,7 +41,7 @@ class Tweet extends Model
         $stmt->execute();
     }
 
-    public function getAll()
+    public function getAll($limit, $offSet)
     {
         $query = "
             SELECT 
@@ -49,7 +49,7 @@ class Tweet extends Model
                 t.id_usuario,
                 u.nome,
                 t.tweet,
-                DATE_FORMAT(t.data_insercao, '%d/%m/%Y %H:%i') as data
+                DATE_FORMAT(t.data_insercao, '%d/%m/%Y %H:%i:%s') AS data
             FROM 
                 tweets as t
             LEFT JOIN
@@ -69,6 +69,10 @@ class Tweet extends Model
                 )                
             ORDER BY
                 data DESC
+            LIMIT
+                $limit
+            OFFSET
+                $offSet
         ";
 
         $stmt = $this->db->prepare($query);
@@ -76,6 +80,37 @@ class Tweet extends Model
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getTotalRegistros()
+    {
+        $query = "
+            SELECT 
+                count(*) as total
+            FROM 
+                tweets as t
+            LEFT JOIN
+                usuarios as u
+            ON 
+                (t.id_usuario = u.id)
+            WHERE
+                t.id_usuario = :id_usuario
+            OR 
+                t.id_usuario IN (                                        
+                    SELECT 
+	                    id_usuario_seguindo 
+                    FROM
+	                    usuarios_seguidores us 
+                    WHERE 
+	                    id_usuario = :id_usuario
+                )                
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id_usuario', $this->__get('id_usuario'));
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function delete()
